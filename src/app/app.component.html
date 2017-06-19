@@ -2,6 +2,5 @@
     <h1 class="text-center">{{title}}</h1>
 </header>
 <article class="container">
-    <foto class="image" url="../assets/leao.jpg" title="leao1"> </foto>
-    <foto class="image" url="../assets/leaobranco.jpg" title="leao2"> </foto>
+    <app-foto *ngFor="let foto of fotos" url="{{foto.url}}" titulo="{{foto.titulo}}"></app-foto>
 </article>

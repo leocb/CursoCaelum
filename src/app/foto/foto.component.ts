@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 @Component({
-    selector: 'foto',
+    selector: 'app-foto',
     templateUrl: './foto.component.html'
 })
 export class FotoComponent {
     @Input() url;
-    @Input() title
+    @Input() titulo
 }
