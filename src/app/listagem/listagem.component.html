@@ -2,10 +2,21 @@
     <h1 class="text-center">{{title}}</h1>
 </header>
 <article class="container">
-    <div *ngFor="let foto of fotos; let i=index">
-        <app-painel [titulo]="foto.titulo" class="col-md-3">
-            <app-foto [url]="foto.url" [titulo]="foto.titulo"></app-foto>
-        </app-painel>
-        <div *ngIf="(i%3)==0" class="clearfix visible-md-block"></div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="form-group">
+                <span class="input-group">
+                <a [routerLink]="['/cadastro']" class="btn btn-primary" href="/cadastro">Nova Foto</a>
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let foto of fotos; let i=index">
+            <app-painel [titulo]="foto.titulo" class="col-md-3">
+                <app-foto [url]="foto.url" [titulo]="foto.titulo"></app-foto>
+            </app-painel>
+            <div *ngIf="(i%4)==3" class="clearfix"></div>
+        </div>
     </div>
 </article>

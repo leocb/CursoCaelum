@@ -1,6 +1,7 @@
 import '../../node_modules/rxjs/add/operator/map';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { routing } from './app.routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FotoModule } from './foto/foto.module';
@@ -15,6 +16,7 @@ import { ListagemComponent } from './listagem/listagem.component';
     ListagemComponent
   ],
   imports: [
+    routing,
     BrowserModule,
     HttpModule,
     FotoModule,
