@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
-import { Http } from '@angular/http';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-listagem',
   templateUrl: './listagem.component.html'
 })
 export class ListagemComponent implements OnInit {
-
+  service: AppService;
   title = 'Bem-vindo ao CaelumPic!';
-  fotos: FotoComponent[] = [];
-  constructor(http: Http) {
-    http.get('http://localhost:3000/v1/fotos')
-        .map(response => response.json())
-        .subscribe(fotos => this.fotos = fotos, erro => console.error(erro)
-    );
+
+  constructor(service: AppService) {
+    this.service = service
+    this.service.listar()
   };
 
   ngOnInit() {
