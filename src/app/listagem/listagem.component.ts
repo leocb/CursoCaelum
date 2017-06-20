@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FotoModule } from '../foto/foto.module';
 import { FotoComponent } from '../foto/foto.component';
 import { PainelModule } from '../painel/painel.module';
 import { Http } from '@angular/http';
@@ -11,7 +10,7 @@ import { Http } from '@angular/http';
 export class ListagemComponent implements OnInit {
 
   title = 'Bem-vindo ao CaelumPic!';
-  fotos: FotoComponent[];
+  fotos: FotoComponent[] = [];
   constructor(http: Http) {
     http.get('http://localhost:3000/v1/fotos')
         .map(response => response.json())
