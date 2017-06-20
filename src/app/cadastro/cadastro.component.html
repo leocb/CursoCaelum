@@ -6,24 +6,26 @@
 
 <article>
     <div class="container">
-        <form action="" class="col-sm-8" (submit)="cadastrar($event);$event.preventDefault()">
+        <form action="" class="col-sm-8" (submit)="cadastrar($event);$event.preventDefault()" [formGroup]="formCadastro">
             <div class="form-group">
                 <label for="titulo">Título</label>
-                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
+                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control" required formControlName="titulo">
+                <span class="form-control alert-danger" *ngIf="formCadastro.controls.titulo.invalid">Titulo é obrigatório</span>
             </div>
 
             <div class="form-group">
                 <label for="url">URL</label>
-                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control">
+                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control" required formControlName="url">
+                <span class="form-control alert-danger" *ngIf="formCadastro.controls.url.invalid">URL é obrigatória</span>
             </div>
 
             <div class="form-group">
                 <label for="descricao">Descricao</label>
-                <textarea [(ngModel)]="foto.descricao" name="descricao" type="text" class="form-control"></textarea>
+                <textarea [(ngModel)]="foto.descricao" name="descricao" type="text" class="form-control" formControlName="descricao"></textarea>
             </div>
 
             <a [routerLink]='[""]' class="btn btn-danger">Voltar</a>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formCadastro.invalid">Salvar</button>
 
         </form>
 

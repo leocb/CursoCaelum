@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
-import { PainelModule } from '../painel/painel.module';
 import { Http } from '@angular/http';
 
 @Component({

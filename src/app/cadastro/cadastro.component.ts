@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
 import {Headers, Http} from '@angular/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,8 +12,15 @@ export class CadastroComponent implements OnInit {
   foto: FotoComponent = new FotoComponent();
   http: Http;
 
-  constructor(http: Http) {
+  formCadastro: FormGroup;
+
+  constructor(http: Http, formBuilder: FormBuilder) {
     this.http = http;
+    this.formCadastro = formBuilder.group({
+      titulo: ['', Validators.required],
+      url: ['', Validators.required],
+      descricao: ['']
+    })
   }
 
   ngOnInit() {
