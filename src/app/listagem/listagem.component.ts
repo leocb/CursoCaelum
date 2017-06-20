@@ -6,8 +6,7 @@ import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-listagem',
-  templateUrl: './listagem.component.html',
-  styleUrls: ['./listagem.component.css']
+  templateUrl: './listagem.component.html'
 })
 export class ListagemComponent implements OnInit {
 
