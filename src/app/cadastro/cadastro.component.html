@@ -9,14 +9,16 @@
         <form action="" class="col-sm-8" (submit)="cadastrar($event);$event.preventDefault()" [formGroup]="formCadastro">
             <div class="form-group">
                 <label for="titulo">Título</label>
-                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control" required formControlName="titulo">
-                <span class="form-control alert-danger" *ngIf="formCadastro.controls.titulo.invalid">Titulo é obrigatório</span>
+                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control" required autocomplete="off" formControlName="titulo">
+                <span class="form-control alert-danger" *ngIf="formCadastro.controls.titulo.errors && formCadastro.controls.titulo.errors.required">Titulo é obrigatório</span>
+                <span class="form-control alert-warning" *ngIf="formCadastro.controls.titulo.errors && formCadastro.controls.titulo.errors.minlength">Titulo deve ser mais longo</span>
             </div>
 
             <div class="form-group">
                 <label for="url">URL</label>
-                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control" required formControlName="url">
-                <span class="form-control alert-danger" *ngIf="formCadastro.controls.url.invalid">URL é obrigatória</span>
+                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control" required autocomplete="off" formControlName="url">
+                <span class="form-control alert-danger" *ngIf="formCadastro.controls.url.errors && formCadastro.controls.url.errors.required">URL é obrigatória</span>
+                <span class="form-control alert-warning" *ngIf="formCadastro.controls.url.errors && formCadastro.controls.url.errors.pattern">Digite uma URL válida</span>
             </div>
 
             <div class="form-group">

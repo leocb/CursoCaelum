@@ -17,8 +17,8 @@ export class CadastroComponent implements OnInit {
   constructor(http: Http, formBuilder: FormBuilder) {
     this.http = http;
     this.formCadastro = formBuilder.group({
-      titulo: ['', Validators.required],
-      url: ['', Validators.required],
+      titulo: ['' , Validators.compose([Validators.required, Validators.minLength(3)])],
+      url: ['', Validators.compose([Validators.required, Validators.pattern(/https?\:\/\/\S+\.\S+/i)])],
       descricao: ['']
     })
   }

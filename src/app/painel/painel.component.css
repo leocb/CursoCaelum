@@ -1,0 +1,12 @@
+.efeito:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+    transition-timing-function: ease-out;
+}
+
+.efeito {
+    box-shadow: 10px;
+    transform: scale(1);
+    transition: transform 0.2s;
+    transition-timing-function: ease-out;
+}
