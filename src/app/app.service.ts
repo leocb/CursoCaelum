@@ -11,7 +11,7 @@ export class AppService {
     fotos: FotoComponent[] = []
     foto: FotoComponent = new FotoComponent()
     cabecalho: Headers = new Headers()
-    url: string = 'http://localhost:3000/v1/fotos';
+    url = 'http://localhost:3000/v1/fotos';
 
     constructor(http: Http) {
         this.http = http

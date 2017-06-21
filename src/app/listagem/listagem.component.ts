@@ -10,6 +10,7 @@ export class ListagemComponent implements OnInit {
   title = 'Bem-vindo ao CaelumPic!';
   fotos: FotoComponent[] = [];
   service: AppService;
+  mensagem = ''
 
   constructor(service: AppService) {
     this.service = service
@@ -22,10 +23,11 @@ export class ListagemComponent implements OnInit {
   deletar(foto: FotoComponent) {
     this.service.deletar(foto).subscribe(
       () => {
-        console.log(`${foto.titulo} deletada com sucesso!`)
-        let novaListaDeFotos: FotoComponent[] = this.fotos.slice(0)
+        const novaListaDeFotos: FotoComponent[] = this.fotos.slice(0)
         novaListaDeFotos.splice(novaListaDeFotos.indexOf(foto), 1)
         this.fotos = novaListaDeFotos
+
+        this.mensagem = `foto "${foto.titulo}" deletada com sucesso!`
       },
       erro => console.log(erro)
     )

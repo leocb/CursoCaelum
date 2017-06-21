@@ -2,6 +2,11 @@
     <h1 class="text-center">{{title}}</h1>
 </header>
 <article class="container">
+
+    <p *ngIf="mensagem.length" class="alert alert-info">
+        {{mensagem}}
+    </p>
+
     <div class="form-group">
         <div class="input-group">
             <span class="input-group-btn">
