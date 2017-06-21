@@ -6,6 +6,10 @@
 
 <article>
     <div class="container">
+        <p *ngIf="mensagem" class="alert alert-info">
+            {{mensagem}}
+        </p>
+
         <form action="" class="col-sm-8" (submit)="cadastrar($event);$event.preventDefault()" [formGroup]="formCadastro">
             <div class="form-group">
                 <label for="titulo">Título</label>

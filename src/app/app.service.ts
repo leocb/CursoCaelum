@@ -28,16 +28,17 @@ export class AppService {
                 .map(response => response.json())
     }
 
-    cadastrar(foto: FotoComponent): any {
-        console.log(foto);
-        return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
+    cadastrar(foto: FotoComponent): Observable<any> {
+        if (foto._id) {
+            return this.http.put(`${this.url}/${foto._id}`, JSON.stringify(foto), {headers: this.cabecalho})
+                    .map(() => ({mensagem: 'Foto alterada com sucesso!'}))
+        }else {
+            return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
+                    .map(() => ({mensagem: 'Foto gravada com sucesso!'}))
+        }
     }
 
     deletar(foto: FotoComponent): any {
         return this.http.delete(`${this.url}/${foto._id}`)
-    }
-
-    atualizar(foto: FotoComponent): any {
-        return this.http.put(`${this.url}/${foto._id}`, JSON.stringify(foto), {headers: this.cabecalho})
     }
 }

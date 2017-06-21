@@ -3,6 +3,7 @@ import { FotoComponent } from '../foto/foto.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { routing } from '../app.routes';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,6 +16,7 @@ export class CadastroComponent implements OnInit {
   formCadastro: FormGroup;
   rota: ActivatedRoute;
   roteador: Router;
+  mensagem: string
   tituloTela = 'Cadastro de fotos'
 
   idFotoSendoEditada = ''
@@ -48,18 +50,13 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrar(event: Event) {
-    if (this.foto._id) {
-    this.service.atualizar(this.foto).subscribe(
+    this.service.cadastrar(this.foto).subscribe(
       response => {
-        console.log('Foto atualizada com sucesso!')
-        this.roteador.navigate([''])
+        this.mensagem = response.mensagem
+        if (this.foto._id) {
+          setTimeout(() => {this.roteador.navigate([''])}, 1500)
+        }
       },
       erro => console.log('Erro: ' + erro.status, erro))
-    } else {
-    this.service.cadastrar(this.foto).subscribe(
-      response => console.log('Foto gravada com sucesso!'),
-      erro => console.log('Erro: ' + erro.status, erro))
-    }
   }
-
 }
