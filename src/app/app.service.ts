@@ -28,13 +28,13 @@ export class AppService {
                 .map(response => response.json())
     }
 
-    cadastrar(foto: FotoComponent): Observable<any> {
+    cadastrar(foto: FotoComponent): Observable<Mensagem> {
         if (foto._id) {
             return this.http.put(`${this.url}/${foto._id}`, JSON.stringify(foto), {headers: this.cabecalho})
-                    .map(() => ({mensagem: 'Foto alterada com sucesso!'}))
+                    .map(() => new Mensagem('Foto alterada com sucesso!'))
         }else {
             return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
-                    .map(() => ({mensagem: 'Foto gravada com sucesso!'}))
+                    .map(() => new Mensagem('Foto gravada com sucesso!'))
         }
     }
 
@@ -42,3 +42,23 @@ export class AppService {
         return this.http.delete(`${this.url}/${foto._id}`)
     }
 }
+
+export class Mensagem {
+  /**
+   * Creates an instance of Mensagem.
+   * @param {string} _mensagem qual a mensagem?
+   * @memberof Mensagem
+   */
+    constructor(private _mensagem: string) {
+    this._mensagem = _mensagem
+  }
+  /**
+   * Pega o valor da mensagem
+   * @readonly
+   * @type {string}@memberof Mensagem
+   */
+  public get mensagem(): string {
+    return this._mensagem
+  }
+}
+

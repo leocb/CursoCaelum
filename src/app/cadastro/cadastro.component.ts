@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppService } from '../app.service';
+import { AppService, Mensagem } from '../app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { routing } from '../app.routes';
 
@@ -51,7 +51,7 @@ export class CadastroComponent implements OnInit {
 
   cadastrar(event: Event) {
     this.service.cadastrar(this.foto).subscribe(
-      response => {
+      (response: Mensagem) => {
         this.mensagem = response.mensagem
         if (this.foto._id) {
           setTimeout(() => {this.roteador.navigate([''])}, 1500)
