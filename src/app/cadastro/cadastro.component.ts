@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,10 +14,12 @@ export class CadastroComponent implements OnInit {
   service: AppService;
   formCadastro: FormGroup;
   rota: ActivatedRoute;
+  roteador: Router;
+  tituloTela = 'Cadastro de fotos'
 
   idFotoSendoEditada = ''
 
-  constructor( formBuilder: FormBuilder, service: AppService, rota: ActivatedRoute) {
+  constructor( formBuilder: FormBuilder, service: AppService, rota: ActivatedRoute, roteador: Router) {
     this.formCadastro = formBuilder.group({
       titulo: ['' , Validators.compose([Validators.required, Validators.minLength(3)])],
       url: ['', Validators.compose([Validators.required, Validators.pattern(/https?\:\/\/\S+\.\S+ || data\:image /i)])],
@@ -26,12 +28,14 @@ export class CadastroComponent implements OnInit {
 
     this.service = service
     this.rota = rota
+    this.roteador = roteador
 
     this.rota.params.subscribe(
       response => {
         if (response.id !== undefined) {
           service.detalheFoto(response.id).subscribe(fotos => {
             this.foto = fotos
+            this.tituloTela = `Alterando foto "${this.foto.titulo}"`
           },
           erro => console.log(erro))
         }
@@ -46,7 +50,10 @@ export class CadastroComponent implements OnInit {
   cadastrar(event: Event) {
     if (this.foto._id) {
     this.service.atualizar(this.foto).subscribe(
-      response => console.log('Foto atualizada com sucesso!'),
+      response => {
+        console.log('Foto atualizada com sucesso!')
+        this.roteador.navigate([''])
+      },
       erro => console.log('Erro: ' + erro.status, erro))
     } else {
     this.service.cadastrar(this.foto).subscribe(
