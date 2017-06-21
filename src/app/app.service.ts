@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Http, Headers } from '@angular/http';
 import { FotoComponent } from './foto/foto.component';
+import { Observable } from "rxjs";
 
 @Injectable()
 
@@ -16,13 +17,9 @@ export class AppService {
         this.cabecalho.append('content-type', 'application/json');
     }
 
-    listar(): FotoComponent[] {
-        let fotos: FotoComponent[]
-        this.http.get('http://localhost:3000/v1/fotos')
+    listar(): Observable<FotoComponent[]> {
+        return this.http.get('http://localhost:3000/v1/fotos')
             .map(response => response.json())
-            .subscribe(resposta => fotos = resposta, erro => console.error(erro)
-        );
-        return fotos;
     }
 
     cadastrar(foto: FotoComponent) {

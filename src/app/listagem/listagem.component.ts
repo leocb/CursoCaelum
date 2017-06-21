@@ -7,12 +7,11 @@ import { AppService } from '../app.service';
   templateUrl: './listagem.component.html'
 })
 export class ListagemComponent implements OnInit {
-  service: AppService;
   title = 'Bem-vindo ao CaelumPic!';
+  fotos: FotoComponent[]
 
   constructor(service: AppService) {
-    this.service = service
-    this.service.listar()
+    service.listar().subscribe(resposta => this.fotos = resposta, erro => console.error(erro))
   };
 
   ngOnInit() {
