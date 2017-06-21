@@ -11,7 +11,7 @@ export class AppService {
     fotos: FotoComponent[] = []
     foto: FotoComponent = new FotoComponent()
     cabecalho: Headers = new Headers()
-    url = 'http://localhost:3000/v1/fotos';
+    url = 'http://localhost:3000/v1/fotos'
 
     constructor(http: Http) {
         this.http = http
@@ -19,11 +19,17 @@ export class AppService {
     }
 
     listar(): Observable<FotoComponent[]> {
-        return this.http.get(this.url)
-            .map(response => response.json())
+            return this.http.get(this.url)
+                .map(response => response.json())
+    }
+
+    detalheFoto(id): any {
+            return this.http.get(`${this.url}/${id}`)
+                .map(response => response.json())
     }
 
     cadastrar(foto: FotoComponent): any {
+        console.log(foto);
         return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
     }
 
@@ -31,7 +37,7 @@ export class AppService {
         return this.http.delete(`${this.url}/${foto._id}`)
     }
 
-    atualizar(foto: FotoComponent) {
-
+    atualizar(foto: FotoComponent): any {
+        return this.http.put(`${this.url}/${foto._id}`, JSON.stringify(foto), {headers: this.cabecalho})
     }
 }
