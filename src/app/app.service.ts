@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { Http, Headers } from '@angular/http';
 import { FotoComponent } from './foto/foto.component';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 @Injectable()
 
 export class AppService {
     http: Http
     fotos: FotoComponent[] = []
-    foto: FotoComponent = new FotoComponent();
-    cabecalho: Headers = new Headers();
+    foto: FotoComponent = new FotoComponent()
+    cabecalho: Headers = new Headers()
+    url: string = 'http://localhost:3000/v1/fotos';
 
     constructor(http: Http) {
         this.http = http
@@ -18,14 +19,12 @@ export class AppService {
     }
 
     listar(): Observable<FotoComponent[]> {
-        return this.http.get('http://localhost:3000/v1/fotos')
+        return this.http.get(this.url)
             .map(response => response.json())
     }
 
-    cadastrar(foto: FotoComponent) {
-        this.http.post('http://localhost:3000/v1/fotos', JSON.stringify(foto), {headers: this.cabecalho})
-                 .subscribe(response => console.log('Foto gravada com sucesso!'),
-                            erro => console.log('Erro: ' + erro.status, erro))
+    cadastrar(foto: FotoComponent): any {
+        return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
     }
 
     deletar(foto: FotoComponent) {
