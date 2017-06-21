@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Http, Headers } from '@angular/http';
 import { FotoComponent } from './foto/foto.component';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 
@@ -27,8 +27,8 @@ export class AppService {
         return this.http.post(this.url, JSON.stringify(foto), {headers: this.cabecalho})
     }
 
-    deletar(foto: FotoComponent) {
-
+    deletar(foto: FotoComponent): any {
+        return this.http.delete(`${this.url}/${foto._id}`)
     }
 
     atualizar(foto: FotoComponent) {

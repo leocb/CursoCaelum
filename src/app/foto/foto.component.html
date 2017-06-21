@@ -1,6 +1,8 @@
 <!--one way data binding: [src]='url' //faz referencia a propriedade url definida no foto.component.ts-->
 <figure>
-    <img [src]='url' [alt]='titulo' class="img-responsive center-block" />
+    <div class="efeito">
+        <img [src]='url' [alt]='titulo' class="img-responsive center-block" />
+    </div>
     <figcaption>
         <ng-content></ng-content>
     </figcaption>
