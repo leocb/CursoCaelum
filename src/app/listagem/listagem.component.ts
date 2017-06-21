@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
 })
 export class ListagemComponent implements OnInit {
   title = 'Bem-vindo ao CaelumPic!';
-  fotos: FotoComponent[]
+  fotos: FotoComponent[] = [];
 
   constructor(service: AppService) {
     service.listar().subscribe(resposta => this.fotos = resposta, erro => console.error(erro))
