@@ -19,7 +19,7 @@
         <div *ngFor="let foto of fotos | filtroPorTitulo: textoProcurado.value;  let i=index">
             <app-painel [titulo]="foto.titulo" class="col-md-3">
                 <a [routerLink]="['/cadastro',foto._id]">
-                    <app-foto [url]="foto.url" [titulo]="foto.titulo"></app-foto>
+                    <app-foto [url]="foto.url" [titulo]="foto.titulo" [descricao]="foto.descricao"></app-foto>
                 </a>
                 <button class="btn btn-danger" (click)="deletar(foto)">X</button>
             </app-painel>
